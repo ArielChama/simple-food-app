@@ -1,0 +1,19 @@
+{
+  "expo": {
+    "name": "food-delivery-app",
+    "slug": "food-delivery-app",
+    "icon": "./assets/images/icon.png",
+    "scheme": "deliveryApp",
+    "userInterfaceStyle": "automatic",
+    "splash": {
+      "image": "./assets/images/splash-screen.png",
+      "resizeMode": "cover"
+    },
+    "plugins": [
+      "expo-router"
+    ],
+    "experiments": {
+      "typedRoutes": true
+    }
+  }
+}
