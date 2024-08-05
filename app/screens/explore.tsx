@@ -1,4 +1,6 @@
+import Card from '@/components/Card'
 import Container from '@/components/Container'
+import Foods from '@/components/Foods'
 import Menu from '@/components/Menu'
 import Rank from '@/components/Rank'
 import { Link } from 'expo-router'
@@ -17,35 +19,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
     marginTop: 20
   },
-  card: {
-    display: 'flex',
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#F9FFF6',
-    padding: 20,
-    borderRadius: 20,
-    marginBottom: 20
-  }
 })
-
-const foods = [
-  {
-    name: 'Hotdog',
-    description: 'The term hot dog can also refer to the sausage itself.',
-    cover: require('@/assets/images/HotDog.png')
-  },
-  {
-    name: 'Burger',
-    description: 'The term hot dog can also refer to the sausage itself.',
-    cover: require('@/assets/images/Burger.png')
-  },
-  {
-    name: 'Chips',
-    description: 'The term hot dog can also refer to the sausage itself.',
-    cover: require('@/assets/images/FriesFront.png')
-  },
-]
 
 const Explore = () => {
   return (
@@ -73,8 +47,8 @@ const Explore = () => {
         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Popular</Text>
 
         <View style={{ paddingTop: 30 }}>
-          {foods.map(({ name, description, cover }) => (
-            <View style={styles.card} key={name}>
+          {Foods.map(({ name, description, cover }) => (
+            <Card key={name}>
               <View style={{ width: '60%' }}>
                 <Link href={`/screens/category/${name}`}>
                   <Text style={{ fontSize: 27 }}>{name}</Text></Link>
@@ -86,7 +60,7 @@ const Explore = () => {
               </View>
 
               <Image source={cover} style={{ width: 120, height: 120 }} />
-            </View>
+            </Card>
           ))}
         </View>
       </View>
