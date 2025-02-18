@@ -1,19 +1,27 @@
-import React from 'react'
 import Card from '@/components/Card'
 import Container from '@/components/Container'
-import { Categories, Foods } from '@/components/Foods'
+import Foods from '@/components/Foods'
 import Menu from '@/components/Menu'
 import Rank from '@/components/Rank'
 import { Link } from 'expo-router'
+import React from 'react'
 import { Image, StyleSheet, Text, View } from 'react-native'
 
 const styles = StyleSheet.create({
-  
+  input: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    backgroundColor: '#fff',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    borderRadius: 20,
+    marginTop: 20
+  },
 })
 
-const Explore = () => {
-  const populars = Foods.filter(food => food.stars >= 4)
-
+const Home = () => {
   return (
     <Container>
       <Menu />
@@ -25,11 +33,13 @@ const Explore = () => {
             <Text>All</Text>
           </View>
 
-          {Categories.map(({ name, cover }) => (
-            <View key={name} style={{ backgroundColor: '#EA574F', width: 130, height: 83, borderRadius: 20 }}>
-              <Image source={cover} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
-            </View>
-          ))}
+          <View style={{ backgroundColor: '#EA574F', width: 130, height: 83, borderRadius: 20 }}>
+            <Image source={require('@/assets/images/box_donut.png')} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
+          </View>
+
+          <View style={{ backgroundColor: '#3AA856', width: 130, height: 83, borderRadius: 20 }}>
+            <Image source={require('@/assets/images/Burger.png')} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
+          </View>
         </View>
       </View>
 
@@ -37,13 +47,10 @@ const Explore = () => {
         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Popular</Text>
 
         <View style={{ paddingTop: 30 }}>
-          {populars.map(({ id, name, description, cover }) => (
-            <Card key={id}>
+          {Foods.map(({ name, description, cover }) => (
+            <Card key={name}>
               <View style={{ width: '60%' }}>
-                <Link href={{
-                  pathname: '/screens/product/[id]',
-                  params: {id: id}
-                }}>
+                <Link href={`/screens/product/${name}`}>
                   <Text style={{ fontSize: 27 }}>{name}</Text></Link>
                 <Rank />
 
@@ -61,4 +68,4 @@ const Explore = () => {
   )
 }
 
-export default Explore
+export default Home
