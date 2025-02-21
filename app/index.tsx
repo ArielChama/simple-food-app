@@ -61,7 +61,7 @@ export default function Index() {
         </View>
 
         <Pressable style={{ backgroundColor: '#4688F0', padding: 20, borderRadius: 20, width: 332 }}>
-          <Link href="/screens/explore">
+          <Link href="/screens/home">
             <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>
               Order food
             </Text>
@@ -80,7 +80,7 @@ export default function Index() {
         </View>
 
         <Pressable style={{ backgroundColor: '#3AA856', padding: 20, borderRadius: 20, width: 332, }}>
-          <Link href="/screens/explore">
+          <Link href="/screens/home">
             <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>
               Order food
             </Text>
@@ -100,7 +100,7 @@ export default function Index() {
         </View>
 
         <Pressable style={{ backgroundColor: '#E8453C', padding: 20, borderRadius: 20, width: 332, }}>
-          <Link href="/screens/explore">
+          <Link href="/screens/home">
             <Text style={{ color: '#fff', fontWeight: 'bold', textAlign: 'center' }}>
               Order food
             </Text>

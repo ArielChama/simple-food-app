@@ -1,4 +1,3 @@
-import React from 'react'
 import Svg, { Line } from 'react-native-svg'
 
 const Navbar = () => {

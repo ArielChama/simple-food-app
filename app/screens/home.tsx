@@ -1,27 +1,19 @@
+import React from 'react'
 import Card from '@/components/Card'
 import Container from '@/components/Container'
-import Foods from '@/components/Foods'
+import { Categories, Foods } from '@/components/Foods'
 import Menu from '@/components/Menu'
 import Rank from '@/components/Rank'
 import { Link } from 'expo-router'
-import React from 'react'
-import { Image, StyleSheet, Text, View } from 'react-native'
+import { Image, ScrollView, StyleSheet, Text, View } from 'react-native'
 
 const styles = StyleSheet.create({
-  input: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-    backgroundColor: '#fff',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    borderRadius: 20,
-    marginTop: 20
-  },
+
 })
 
 const Home = () => {
+  const populars = Foods.filter(food => food.stars >= 4)
+
   return (
     <Container>
       <Menu />
@@ -30,16 +22,18 @@ const Home = () => {
 
         <View style={{ display: 'flex', flexDirection: 'row', gap: 10, marginTop: 40 }}>
           <View style={{ backgroundColor: '#FABB2D', borderRadius: 20, paddingHorizontal: 30, paddingVertical: 30 }}>
-            <Text>All</Text>
+            <Link href="/screens/category/all">
+              <Text>All</Text>
+            </Link>
           </View>
 
-          <View style={{ backgroundColor: '#EA574F', width: 130, height: 83, borderRadius: 20 }}>
-            <Image source={require('@/assets/images/box_donut.png')} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
-          </View>
-
-          <View style={{ backgroundColor: '#3AA856', width: 130, height: 83, borderRadius: 20 }}>
-            <Image source={require('@/assets/images/Burger.png')} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
-          </View>
+          {Categories.map(({ name, cover }) => (
+            <Link key={name} href={`/screens/category/${name}`}>
+              <View style={{ backgroundColor: '#EA574F', width: 130, height: 83, borderRadius: 20 }}>
+                <Image source={cover} style={{ width: 121, height: 121, position: 'absolute', top: -60 }} />
+              </View>
+            </Link>
+          ))}
         </View>
       </View>
 
@@ -47,10 +41,14 @@ const Home = () => {
         <Text style={{ fontSize: 20, fontWeight: 'bold' }}>Popular</Text>
 
         <View style={{ paddingTop: 30 }}>
-          {Foods.map(({ name, description, cover }) => (
-            <Card key={name}>
+          <ScrollView showsVerticalScrollIndicator={false} style={{ height: 320 }}>
+          {populars.map(({ id, name, description, cover }) => (
+            <Card key={id}>
               <View style={{ width: '60%' }}>
-                <Link href={`/screens/product/${name}`}>
+                <Link href={{
+                  pathname: '/screens/product/[id]',
+                  params: { id: id }
+                }}>
                   <Text style={{ fontSize: 27 }}>{name}</Text></Link>
                 <Rank />
 
@@ -62,6 +60,7 @@ const Home = () => {
               <Image source={cover} style={{ width: 120, height: 120 }} />
             </Card>
           ))}
+          </ScrollView>
         </View>
       </View>
     </Container>
